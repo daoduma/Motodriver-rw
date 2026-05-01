@@ -2,7 +2,6 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
-import { DISTRICTS } from '../utils/districts';
 import { SUPPORTED_LANGUAGES } from '../i18n/translations';
 import { Car, Globe, LogOut, Edit } from 'lucide-react';
 import './ProfilePage.css';
@@ -41,7 +40,6 @@ export default function ProfilePage() {
       <div className="container">
         <h1 className="profile-title">{t('nav_profile')}</h1>
 
-        {/* User card */}
         <div className="profile-card card">
           <div className="profile-avatar">
             <div className="avatar-placeholder" style={{ width: 72, height: 72, fontSize: '1.6rem' }}>
@@ -57,7 +55,6 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        {/* Language settings */}
         <div className="settings-section card">
           <div className="settings-header">
             <Globe size={18} />
@@ -78,7 +75,6 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        {/* Driver panel */}
         {isDriver && (
           <div className="settings-section card">
             <div className="settings-header">
@@ -91,7 +87,6 @@ export default function ProfilePage() {
           </div>
         )}
 
-        {/* Become a driver */}
         {!isDriver && (
           <div className="driver-cta card">
             <h3>Become a Driver</h3>
@@ -102,7 +97,6 @@ export default function ProfilePage() {
           </div>
         )}
 
-        {/* Logout */}
         <button className="btn btn-ghost btn-full logout-btn" onClick={handleLogout}>
           <LogOut size={16} /> {t('nav_logout')}
         </button>

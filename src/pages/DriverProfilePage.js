@@ -1,6 +1,4 @@
 // src/pages/DriverProfilePage.js
-// Driver registration/edit page
-
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
@@ -29,10 +27,11 @@ export default function DriverProfilePage() {
 
   useEffect(() => {
     if (!user) { navigate('/login'); return; }
+    const userName = userProfile?.name;
     getDriverProfile(user.uid).then((profile) => {
       if (profile) {
         setForm({
-          name: profile.name || userProfile?.name || '',
+          name: profile.name || userName || '',
           district: profile.district || '',
           bio: profile.bio || '',
           experience: profile.experience || '',
@@ -42,7 +41,7 @@ export default function DriverProfilePage() {
       }
       setFetching(false);
     });
-  }, [user]);
+  }, [user, navigate, userProfile?.name]);
 
   const handlePhoto = (e) => {
     const file = e.target.files?.[0];
@@ -91,7 +90,6 @@ export default function DriverProfilePage() {
         </div>
 
         <form onSubmit={handleSubmit} className="driver-form">
-          {/* Photo upload */}
           <div className="photo-upload-section">
             <button type="button" className="photo-upload-btn" onClick={() => fileRef.current?.click()}>
               {photoPreview ? (
@@ -116,7 +114,6 @@ export default function DriverProfilePage() {
             <p className="photo-hint">{t('profile_picture')} • Max 5MB</p>
           </div>
 
-          {/* Name */}
           <div className="form-group">
             <label className="form-label">{t('full_name')}</label>
             <input
@@ -129,7 +126,6 @@ export default function DriverProfilePage() {
             />
           </div>
 
-          {/* District */}
           <div className="form-group">
             <label className="form-label">{t('district')}</label>
             <select
@@ -145,7 +141,6 @@ export default function DriverProfilePage() {
             </select>
           </div>
 
-          {/* Bio */}
           <div className="form-group">
             <label className="form-label">{t('bio')}</label>
             <textarea
@@ -161,7 +156,6 @@ export default function DriverProfilePage() {
             <span className="char-count">{form.bio.length}/500</span>
           </div>
 
-          {/* Experience */}
           <div className="form-group">
             <label className="form-label">{t('experience')}</label>
             <textarea
@@ -177,7 +171,6 @@ export default function DriverProfilePage() {
             <span className="char-count">{form.experience.length}/400</span>
           </div>
 
-          {/* Safety */}
           <div className="safety-banner">{t('safety_notice')}</div>
 
           <button type="submit" className="btn btn-primary btn-full" disabled={loading}>

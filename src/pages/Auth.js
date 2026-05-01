@@ -1,8 +1,8 @@
 // src/pages/Auth.js
 import React, { useState } from 'react';
-import { useNavigate, useSearchParams, Link } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
-import { Mail, Lock, User, Car, Loader } from 'lucide-react';
+import { Mail, Lock, User, Loader } from 'lucide-react';
 import toast from 'react-hot-toast';
 import './Auth.css';
 
@@ -11,7 +11,7 @@ export default function Auth() {
   const navigate = useNavigate();
   const [params] = useSearchParams();
 
-  const [mode, setMode] = useState('login'); // 'login' | 'register'
+  const [mode, setMode] = useState('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -51,7 +51,6 @@ export default function Auth() {
           <p>{t('tagline')}</p>
         </div>
 
-        {/* Tab switcher */}
         <div className="auth-tabs">
           <button
             className={`auth-tab ${mode === 'login' ? 'active' : ''}`}
@@ -69,7 +68,6 @@ export default function Auth() {
 
         <div className="auth-card card">
           <form onSubmit={handleSubmit}>
-            {/* Role selector — only on register */}
             {mode === 'register' && (
               <div className="role-selector">
                 <RoleOption

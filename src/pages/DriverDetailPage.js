@@ -15,7 +15,7 @@ import './DriverDetailPage.css';
 
 export default function DriverDetailPage() {
   const { id } = useParams();
-  const { t, lang, user, userProfile } = useApp();
+  const { t, user, userProfile } = useApp();
   const navigate = useNavigate();
 
   const [driver, setDriver] = useState(null);
@@ -42,7 +42,7 @@ export default function DriverDetailPage() {
       toast.error(t('error_generic'));
       setLoading(false);
     });
-  }, [id, user]);
+  }, [id, user, t]);
 
   const handleTranslate = async (targetLang) => {
     if (!driver) return;
@@ -109,14 +109,12 @@ export default function DriverDetailPage() {
 
   return (
     <div className="driver-detail-page page-enter">
-      {/* Back button */}
       <div className="detail-topbar container">
         <button className="btn btn-ghost" onClick={() => navigate(-1)}>
           <ArrowLeft size={18} /> {t('back')}
         </button>
       </div>
 
-      {/* Hero banner */}
       <div className="driver-hero">
         <div className="driver-hero-bg" aria-hidden="true" />
         <div className="container driver-hero-content">
@@ -142,7 +140,6 @@ export default function DriverDetailPage() {
       </div>
 
       <div className="container detail-body">
-        {/* Rating section */}
         <div className="rating-section card">
           <div className="rating-display">
             {driver.ratingCount > 0 ? (
@@ -157,7 +154,6 @@ export default function DriverDetailPage() {
             )}
           </div>
 
-          {/* Rate button */}
           {user && userProfile?.role !== 'driver' && (
             <div>
               {existingRating ? (
@@ -184,7 +180,6 @@ export default function DriverDetailPage() {
           )}
         </div>
 
-        {/* Rating form */}
         {showRatingForm && (
           <div className="rating-form card">
             <h3>{t('your_rating')}</h3>
@@ -205,7 +200,6 @@ export default function DriverDetailPage() {
           </div>
         )}
 
-        {/* Language translation */}
         <div className="translation-bar">
           <Languages size={16} />
           <span>{t('translate_profile')}:</span>
@@ -224,7 +218,6 @@ export default function DriverDetailPage() {
           {translating && <div className="spinner" style={{ width: 18, height: 18 }} />}
         </div>
 
-        {/* Bio */}
         <div className="detail-section card">
           <h2 className="section-title">{t('about_driver')}</h2>
           <p className="driver-text">
@@ -236,7 +229,6 @@ export default function DriverDetailPage() {
           </p>
         </div>
 
-        {/* Experience */}
         <div className="detail-section card">
           <h2 className="section-title">{t('experience_label')}</h2>
           <p className="driver-text">
@@ -248,10 +240,8 @@ export default function DriverDetailPage() {
           </p>
         </div>
 
-        {/* Safety notice */}
         <div className="safety-banner">{t('safety_notice')}</div>
 
-        {/* Verified badge */}
         <div className="verified-section">
           <span className="badge badge-green" style={{ fontSize: '0.9rem', padding: '8px 16px' }}>
             ✓ {t('verified_driver')}

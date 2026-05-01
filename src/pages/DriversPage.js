@@ -2,28 +2,25 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useApp } from '../context/AppContext';
 import { getAllDrivers, sortByProximity, sortByRating, getDriverDistanceKm } from '../services/drivers';
-import { DISTRICTS, getNearestDistrict } from '../utils/districts';
-import { DISTRICT_OPTIONS } from '../utils/districts';
+import { DISTRICTS, getNearestDistrict, DISTRICT_OPTIONS } from '../utils/districts';
 import DriverCard from '../components/DriverCard';
-import { MapPin, List, Map, Locate, SlidersHorizontal, Loader } from 'lucide-react';
+import { List, Map, Locate, SlidersHorizontal, Loader } from 'lucide-react';
 import toast from 'react-hot-toast';
 import './DriversPage.css';
 
-// Lazy-load map to reduce initial bundle
 const DriverMap = React.lazy(() => import('../components/DriverMap'));
 
 export default function DriversPage() {
   const { t } = useApp();
   const [drivers, setDrivers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [userLocation, setUserLocation] = useState(null); // {lat, lng}
+  const [userLocation, setUserLocation] = useState(null);
   const [selectedDistrict, setSelectedDistrict] = useState('');
-  const [sortMode, setSortMode] = useState('proximity'); // proximity | rating | newest
-  const [viewMode, setViewMode] = useState('list'); // list | map
+  const [sortMode, setSortMode] = useState('proximity');
+  const [viewMode, setViewMode] = useState('list');
   const [locating, setLocating] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
 
-  // Load all drivers once
   useEffect(() => {
     getAllDrivers().then((data) => {
       setDrivers(data);
@@ -33,9 +30,8 @@ export default function DriversPage() {
       setLoading(false);
       toast.error(t('error_generic'));
     });
-  }, []);
+  }, [t]);
 
-  // Get user location
   const detectLocation = useCallback(() => {
     setLocating(true);
     if (!navigator.geolocation) {
@@ -48,12 +44,12 @@ export default function DriversPage() {
         const { latitude, longitude } = pos.coords;
         setUserLocation({ lat: latitude, lng: longitude });
         const nearest = getNearestDistrict(latitude, longitude);
-        setSelectedDistrict(''); // show all but sorted by proximity
+        setSelectedDistrict('');
         setSortMode('proximity');
         setLocating(false);
         toast.success(`📍 Located near ${nearest.name}`);
       },
-      (err) => {
+      () => {
         toast.error(t('error_location'));
         setLocating(false);
       },
@@ -61,30 +57,22 @@ export default function DriversPage() {
     );
   }, [t]);
 
-  // Compute sorted/filtered list
   const processedDrivers = React.useMemo(() => {
     let list = [...drivers];
-
-    // Filter by district
     if (selectedDistrict) {
       list = list.filter((d) => d.district === selectedDistrict);
     }
-
-    // Sort
     if (sortMode === 'proximity' && userLocation) {
       list = sortByProximity(list, userLocation.lat, userLocation.lng);
     } else if (sortMode === 'rating') {
       list = sortByRating(list);
     }
-    // newest: already ordered by updatedAt from Firestore
-
     return list;
   }, [drivers, selectedDistrict, sortMode, userLocation]);
 
   return (
     <div className="drivers-page page-enter">
       <div className="container">
-        {/* Header */}
         <div className="drivers-header">
           <div>
             <h1>{t('available_drivers')}</h1>
@@ -111,9 +99,7 @@ export default function DriversPage() {
           </div>
         </div>
 
-        {/* Controls */}
         <div className="filter-bar">
-          {/* Location detect */}
           <button
             className="btn btn-secondary btn-sm locate-btn"
             onClick={detectLocation}
@@ -122,8 +108,6 @@ export default function DriversPage() {
             {locating ? <Loader size={14} className="spin" /> : <Locate size={14} />}
             {t('detect_location')}
           </button>
-
-          {/* Filter toggle */}
           <button
             className={`btn btn-ghost btn-sm ${filterOpen ? 'toggle-active' : ''}`}
             onClick={() => setFilterOpen(!filterOpen)}
@@ -132,10 +116,8 @@ export default function DriversPage() {
           </button>
         </div>
 
-        {/* Expanded filters */}
         {filterOpen && (
           <div className="filter-panel">
-            {/* District select */}
             <div className="form-group">
               <label className="form-label">{t('district')}</label>
               <select
@@ -149,8 +131,6 @@ export default function DriversPage() {
                 ))}
               </select>
             </div>
-
-            {/* Sort tabs */}
             <div className="form-group">
               <label className="form-label">{t('sort_by_proximity')}</label>
               <div className="sort-pills">
@@ -172,10 +152,8 @@ export default function DriversPage() {
           </div>
         )}
 
-        {/* Safety notice */}
         <div className="safety-banner">{t('safety_notice')}</div>
 
-        {/* Map view */}
         {viewMode === 'map' && (
           <div className="map-container">
             <React.Suspense fallback={<div className="map-loading"><div className="spinner" /></div>}>
@@ -184,7 +162,6 @@ export default function DriversPage() {
           </div>
         )}
 
-        {/* List view */}
         {loading ? (
           <div className="loading-screen">
             <div className="spinner" />

@@ -12,8 +12,6 @@ import {
   orderBy,
   limit,
   where,
-  arrayUnion,
-  increment,
 } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { db, storage } from './firebase';
@@ -67,9 +65,6 @@ export async function getDriversByDistrict(districtId) {
   return snap.docs.map((d) => d.data());
 }
 
-/**
- * Sort drivers by proximity to user coordinates
- */
 export function sortByProximity(drivers, userLat, userLng) {
   return [...drivers].sort((a, b) => {
     const distA = getDriverDistrict(a);
@@ -99,9 +94,7 @@ export function sortByRating(drivers) {
 
 export async function submitRating(driverUid, clientUid, stars) {
   const ratingRef = doc(db, 'ratings', `${driverUid}_${clientUid}`);
-  const existing = await getDoc(ratingRef);
 
-  // Save/update individual rating
   await setDoc(ratingRef, {
     driverUid,
     clientUid,
@@ -109,7 +102,6 @@ export async function submitRating(driverUid, clientUid, stars) {
     createdAt: new Date().toISOString(),
   });
 
-  // Recalculate driver average rating
   const ratingsSnap = await getDocs(
     query(collection(db, 'ratings'), where('driverUid', '==', driverUid))
   );
