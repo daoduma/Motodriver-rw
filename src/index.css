@@ -1,0 +1,300 @@
+/* src/index.css */
+/* MotoDriver Rwanda - Mobile-First Design System */
+/* Aesthetic: Afro-modernist — earthy greens, warm terracotta, clean Swiss typography */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Colors — inspired by Rwanda's landscapes */
+  --green-deep: #1a5f3f;
+  --green-mid: #2d8a5e;
+  --green-light: #4db87a;
+  --green-pale: #e8f5ee;
+  --terra: #c85c2a;
+  --terra-light: #f4a57a;
+  --terra-pale: #fdf0ea;
+  --gold: #d4a017;
+  --gold-pale: #fdf7e3;
+  --dark: #1a1a1a;
+  --mid: #4a4a4a;
+  --muted: #8a8a8a;
+  --border: #e0dbd6;
+  --surface: #f9f6f2;
+  --white: #ffffff;
+  --star: #f5b800;
+  --danger: #d93025;
+
+  /* Typography */
+  --font-display: 'Sora', system-ui, sans-serif;
+  --font-body: 'Noto Sans', system-ui, sans-serif;
+
+  /* Spacing */
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-lg: 20px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+
+  /* Mobile max width */
+  --max-width: 480px;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--surface);
+  color: var(--dark);
+  line-height: 1.6;
+  min-height: 100vh;
+  /* Safe area for PWA on iOS */
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 { font-size: clamp(1.8rem, 6vw, 2.4rem); }
+h2 { font-size: clamp(1.4rem, 5vw, 1.8rem); }
+h3 { font-size: clamp(1.1rem, 4vw, 1.3rem); }
+
+a { color: var(--green-mid); text-decoration: none; }
+
+/* ── Layout ── */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 16px;
+  width: 100%;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--green-deep);
+  color: var(--white);
+}
+.btn-primary:hover, .btn-primary:active {
+  background: var(--green-mid);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--green-deep);
+  border: 2px solid var(--green-deep);
+}
+.btn-secondary:hover {
+  background: var(--green-pale);
+}
+
+.btn-terra {
+  background: var(--terra);
+  color: var(--white);
+}
+.btn-terra:hover { background: #b34e23; }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--mid);
+  padding: 8px 12px;
+}
+.btn-ghost:hover { background: rgba(0,0,0,0.06); }
+
+.btn-full { width: 100%; }
+.btn-sm { padding: 8px 14px; font-size: 0.85rem; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
+
+/* ── Form Elements ── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.form-label {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--mid);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.form-input, .form-select, .form-textarea {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 12px 14px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  color: var(--dark);
+  transition: border-color 0.18s;
+  width: 100%;
+  -webkit-appearance: none;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline: none;
+  border-color: var(--green-mid);
+  box-shadow: 0 0 0 3px rgba(45,138,94,0.15);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* ── Stars ── */
+.stars {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.star { color: var(--border); font-size: 1.1rem; }
+.star.filled { color: var(--star); }
+
+/* ── Badge ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: var(--font-display);
+}
+
+.badge-green {
+  background: var(--green-pale);
+  color: var(--green-deep);
+}
+
+.badge-terra {
+  background: var(--terra-pale);
+  color: var(--terra);
+}
+
+/* ── Safety Banner ── */
+.safety-banner {
+  background: var(--gold-pale);
+  border: 1px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-size: 0.83rem;
+  color: #6b4c00;
+  line-height: 1.5;
+  margin: 16px 0;
+}
+
+/* ── Spinner ── */
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--border);
+  border-top-color: var(--green-mid);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* ── Leaflet Map overrides ── */
+.leaflet-container {
+  font-family: var(--font-body) !important;
+  border-radius: var(--radius);
+}
+
+/* ── Page transition ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.page-enter {
+  animation: fadeUp 0.3s ease both;
+}
+
+/* ── Divider ── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 20px 0;
+}
+
+/* ── Empty state ── */
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--muted);
+}
+
+.empty-state-icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+/* ── Avatar ── */
+.avatar {
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--border);
+}
+
+.avatar-placeholder {
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--green-light), var(--green-deep));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }

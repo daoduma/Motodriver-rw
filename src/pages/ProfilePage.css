@@ -1,0 +1,113 @@
+/* src/pages/ProfilePage.css */
+
+.profile-page { padding: 20px 0 40px; }
+
+.profile-title {
+  color: var(--green-deep);
+  margin-bottom: 20px;
+}
+
+.not-logged-in {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  margin-bottom: 12px;
+}
+
+.profile-avatar { flex-shrink: 0; }
+
+.profile-info h2 {
+  font-size: 1.1rem;
+  margin-bottom: 3px;
+}
+
+.profile-email {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+/* Settings */
+.settings-section {
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.settings-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--green-deep);
+  margin-bottom: 12px;
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+.lang-options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lang-choice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: white;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--dark);
+  transition: all 0.15s;
+  text-align: left;
+}
+
+.lang-choice.active {
+  border-color: var(--green-mid);
+  background: var(--green-pale);
+  color: var(--green-deep);
+}
+
+.lang-check {
+  margin-left: auto;
+  font-weight: 700;
+  color: var(--green-mid);
+}
+
+/* Driver CTA */
+.driver-cta {
+  padding: 20px;
+  margin-bottom: 12px;
+  background: var(--terra-pale);
+  border: 1px solid rgba(200,92,42,0.15);
+}
+
+.driver-cta h3 {
+  color: var(--terra);
+  margin-bottom: 4px;
+}
+
+.driver-cta p {
+  color: var(--mid);
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+/* Logout */
+.logout-btn {
+  color: var(--danger) !important;
+  border: 2px solid transparent;
+}
+.logout-btn:hover {
+  background: #fef2f2 !important;
+  border-color: var(--danger);
+}

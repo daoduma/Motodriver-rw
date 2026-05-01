@@ -1,0 +1,141 @@
+/* src/pages/Auth.css */
+
+.auth-page {
+  min-height: 100vh;
+  background: linear-gradient(160deg, var(--green-deep) 0%, #0d3d27 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 0;
+}
+
+.auth-container { width: 100%; max-width: 400px; }
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 24px;
+  color: white;
+}
+
+.auth-logo {
+  font-size: 3rem;
+  margin-bottom: 8px;
+}
+
+.auth-header h1 {
+  font-size: 1.8rem;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.auth-header p {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+}
+
+/* Tabs */
+.auth-tabs {
+  display: flex;
+  background: rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  padding: 4px;
+  margin-bottom: 16px;
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: calc(var(--radius) - 4px);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.auth-tab.active {
+  background: white;
+  color: var(--green-deep);
+}
+
+/* Card */
+.auth-card {
+  padding: 24px 20px;
+}
+
+/* Role selector */
+.role-selector {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.role-option {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 10px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  background: white;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--mid);
+  transition: all 0.18s;
+}
+
+.role-option.selected {
+  border-color: var(--green-mid);
+  background: var(--green-pale);
+  color: var(--green-deep);
+}
+
+.role-icon { font-size: 1.8rem; }
+
+/* Input with icon */
+.input-with-icon {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.input-with-icon .form-input {
+  padding-left: 40px;
+}
+
+/* Switch */
+.auth-switch {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: var(--mid);
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--green-mid);
+  font-weight: 600;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0;
+}
+.link-btn:hover { text-decoration: underline; }
+
+/* Spinner */
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin { animation: spin 0.8s linear infinite; }

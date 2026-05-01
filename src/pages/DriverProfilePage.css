@@ -1,0 +1,96 @@
+/* src/pages/DriverProfilePage.css */
+
+.driver-reg-page { padding: 20px 0 40px; }
+
+.page-header {
+  margin-bottom: 24px;
+}
+.page-header h1 {
+  color: var(--green-deep);
+  margin-bottom: 4px;
+}
+.page-header p {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.driver-form { display: flex; flex-direction: column; gap: 4px; }
+
+/* Photo upload */
+.photo-upload-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.photo-upload-btn {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  background: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.photo-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.photo-placeholder {
+  width: 100px;
+  height: 100px;
+  font-size: 1.8rem;
+}
+
+.photo-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(26,95,63,0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: white;
+  font-size: 0.72rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.photo-upload-btn:hover .photo-overlay,
+.photo-upload-btn:focus .photo-overlay {
+  opacity: 1;
+}
+
+.photo-hint {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.char-count {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-align: right;
+  align-self: flex-end;
+}
+
+.loading-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin { animation: spin 0.8s linear infinite; }

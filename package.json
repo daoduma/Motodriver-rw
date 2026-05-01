@@ -1,0 +1,35 @@
+{
+  "name": "motodriver-rw",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.0",
+    "firebase": "^10.8.0",
+    "leaflet": "^1.9.4",
+    "react-leaflet": "^4.2.1",
+    "react-scripts": "5.0.1",
+    "i18next": "^23.10.0",
+    "react-i18next": "^14.1.0",
+    "i18next-browser-languagedetector": "^8.0.0",
+    "lucide-react": "^0.344.0",
+    "react-hot-toast": "^2.4.1",
+    "workbox-core": "^7.0.0",
+    "workbox-precaching": "^7.0.0",
+    "workbox-routing": "^7.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": ["react-app"]
+  },
+  "browserslist": {
+    "production": [">0.2%", "not dead", "not op_mini all"],
+    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+  }
+}

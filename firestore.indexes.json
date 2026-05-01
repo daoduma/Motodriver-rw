@@ -1,0 +1,21 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "drivers",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "district", "order": "ASCENDING" },
+        { "fieldPath": "rating", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "ratings",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "driverUid", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
